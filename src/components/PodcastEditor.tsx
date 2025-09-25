@@ -2,7 +2,7 @@ import React, { useState, useRef, useContext } from 'react';
 import { generatePodcastEditingNotes, PodcastNotesResult } from '../services/geminiService';
 import { LoaderIcon } from './icons/LoaderIcon';
 import { HelpIcon } from './icons/HelpIcon';
-import { HelpModal } from './HelpModal';
+import HelpModal from './HelpModal';
 import { ImportIcon } from './icons/ImportIcon';
 import { DocumentTextIcon } from './icons/DocumentTextIcon';
 import { TagIcon } from './icons/TagIcon';

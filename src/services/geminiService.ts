@@ -18,6 +18,7 @@ export const generateDubbingScript = async (script: string, targetLanguage: stri
             model: 'gemini-2.5-flash',
             contents: prompt
         });
+        // FIX: Handle cases where response.text can be undefined.
         return response.text ?? '';
     } catch (error) {
         console.error("Error generating dubbing script:", error);
@@ -63,6 +64,7 @@ export const analyzeAudioForEnhancement = async (filename: string, preset: strin
                 },
             },
         });
+        // FIX: Safely parse JSON response by checking if response.text exists.
         const text = response.text;
         if (!text) {
             throw new Error("Received an empty response from the API.");
@@ -152,6 +154,7 @@ export const generatePodcastEditingNotes = async (transcript: string, speakerNam
                 },
             }
         });
+        // FIX: Safely parse JSON response by checking if response.text exists.
         const text = response.text;
         if (!text) {
             throw new Error("Received an empty response from the API.");
@@ -170,6 +173,7 @@ export const generateSubtitles = async (transcript: string, language: string): P
             model: 'gemini-2.5-flash',
             contents: `You are an expert subtitle generator. Translate the following transcript to ${language} and then format the entire output as a standard .SRT subtitle file. Create plausible, sequential timestamps for each subtitle entry based on sentence length and natural speaking rhythm. The first timestamp should start around 00:00:01,000. Ensure the format is strictly adhered to (entry number, timestamp, text). Only output the raw SRT content and nothing else.\n\nTranscript:\n${transcript}`
         });
+        // FIX: Handle cases where response.text can be undefined.
         return response.text ?? '';
     } catch (error) {
         console.error(`Error generating subtitles for ${language}:`, error);
@@ -230,6 +234,7 @@ export const generateMusicDescription = async (prompt: string, genre: string, mo
                 },
             },
         });
+        // FIX: Safely parse JSON response by checking if response.text exists.
         const text = response.text;
         if (!text) {
             throw new Error("Received an empty response from the API.");
@@ -315,6 +320,7 @@ export const analyzeScript = async (script: string, scriptType: string, focus: s
                 },
             },
         });
+        // FIX: Safely parse JSON response by checking if response.text exists.
         const text = response.text;
         if (!text) {
             throw new Error("Received an empty response from the API.");
@@ -383,6 +389,7 @@ export const generateTTScriptSuggestion = async (): Promise<string> => {
             model: 'gemini-2.5-flash',
             contents: "Generate a single, short, creative sentence (between 10 to 20 words) suitable for a text-to-speech demonstration. It should be interesting to hear. Examples: 'The velvet moon whispered secrets to the sleeping ocean.' or 'A symphony of chirping crickets filled the twilight air.' Do not include quotation marks in your response."
         });
+        // FIX: Handle cases where response.text can be undefined and trim safely.
         return response.text?.trim() ?? '';
     } catch (error) {
         console.error("Error generating TT script suggestion:", error);
@@ -475,6 +482,7 @@ export const generateSoundEffect = async (
                 },
             },
         });
+        // FIX: Safely parse JSON response by checking if response.text exists.
         const text = response.text;
         if (!text) {
             throw new Error("Received an empty response from the API.");

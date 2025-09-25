@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useContext } from 'react';
 import { analyzeAudioForEnhancement, AudioAnalysisResult } from '../services/geminiService';
 import { LoaderIcon } from './icons/LoaderIcon';
 import { HelpIcon } from './icons/HelpIcon';
-import { HelpModal } from './HelpModal';
+import HelpModal from './HelpModal';
 import { ImportIcon } from './icons/ImportIcon';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { translations } from '../translations';

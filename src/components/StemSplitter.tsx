@@ -2,7 +2,7 @@ import React, { useState, useRef, useContext } from 'react';
 import { splitAudioStems, StemSplitResult } from '../services/geminiService';
 import { LoaderIcon } from './icons/LoaderIcon';
 import { HelpIcon } from './icons/HelpIcon';
-import { HelpModal } from './HelpModal';
+import HelpModal from './HelpModal';
 import { DownloadIcon } from './icons/DownloadIcon';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { translations } from '../translations';

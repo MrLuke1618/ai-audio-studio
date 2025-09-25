@@ -2,7 +2,7 @@ import React, { useState, useRef, useContext } from 'react';
 import { generateSubtitles } from '../services/geminiService';
 import { LoaderIcon } from './icons/LoaderIcon';
 import { HelpIcon } from './icons/HelpIcon';
-import { HelpModal } from './HelpModal';
+import HelpModal from './HelpModal';
 import { ImportIcon } from './icons/ImportIcon';
 import { DownloadIcon } from './icons/DownloadIcon';
 import { LanguageContext } from '../contexts/LanguageContext';

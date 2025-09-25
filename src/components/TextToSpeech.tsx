@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { generateTextToSpeech, TTSGenerationResult, generateTTScriptSuggestion } from '../services/geminiService';
 import { LoaderIcon } from './icons/LoaderIcon';
 import { HelpIcon } from './icons/HelpIcon';
-import { HelpModal } from './HelpModal';
+import HelpModal from './HelpModal';
 import { DownloadIcon } from './icons/DownloadIcon';
 import { MagicWandIcon } from './icons/MagicWandIcon';
 import { LanguageContext } from '../contexts/LanguageContext';

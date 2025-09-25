@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { generateMusicDescription, MusicCompositionResult } from '../services/geminiService';
 import { LoaderIcon } from './icons/LoaderIcon';
 import { HelpIcon } from './icons/HelpIcon';
-import { HelpModal } from './HelpModal';
+import HelpModal from './HelpModal';
 import { CopyIcon } from './icons/CopyIcon';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { translations } from '../translations';
