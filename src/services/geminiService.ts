@@ -18,7 +18,7 @@ export const generateDubbingScript = async (script: string, targetLanguage: stri
             model: 'gemini-2.5-flash',
             contents: prompt
         });
-        return response.text;
+        return response.text ?? '';
     } catch (error) {
         console.error("Error generating dubbing script:", error);
         throw new Error("Failed to generate dubbing script. Please check your API key and network connection.");
@@ -63,7 +63,11 @@ export const analyzeAudioForEnhancement = async (filename: string, preset: strin
                 },
             },
         });
-        return JSON.parse(response.text);
+        const text = response.text;
+        if (!text) {
+            throw new Error("Received an empty response from the API.");
+        }
+        return JSON.parse(text);
     } catch (error) {
         console.error("Error analyzing audio:", error);
         throw new Error("Failed to analyze audio. Please check your API key and network connection.");
@@ -148,7 +152,11 @@ export const generatePodcastEditingNotes = async (transcript: string, speakerNam
                 },
             }
         });
-        return JSON.parse(response.text);
+        const text = response.text;
+        if (!text) {
+            throw new Error("Received an empty response from the API.");
+        }
+        return JSON.parse(text);
     } catch (error) {
         console.error("Error generating podcast notes:", error);
         throw new Error("Failed to generate podcast notes. Please check your API key and network connection.");
@@ -162,7 +170,7 @@ export const generateSubtitles = async (transcript: string, language: string): P
             model: 'gemini-2.5-flash',
             contents: `You are an expert subtitle generator. Translate the following transcript to ${language} and then format the entire output as a standard .SRT subtitle file. Create plausible, sequential timestamps for each subtitle entry based on sentence length and natural speaking rhythm. The first timestamp should start around 00:00:01,000. Ensure the format is strictly adhered to (entry number, timestamp, text). Only output the raw SRT content and nothing else.\n\nTranscript:\n${transcript}`
         });
-        return response.text;
+        return response.text ?? '';
     } catch (error) {
         console.error(`Error generating subtitles for ${language}:`, error);
         throw new Error(`Failed to generate subtitles for ${language}. Please check your API key and network connection.`);
@@ -222,7 +230,11 @@ export const generateMusicDescription = async (prompt: string, genre: string, mo
                 },
             },
         });
-        return JSON.parse(response.text);
+        const text = response.text;
+        if (!text) {
+            throw new Error("Received an empty response from the API.");
+        }
+        return JSON.parse(text);
     } catch (error) {
         console.error("Error generating music description:", error);
         throw new Error("Failed to generate music description. Please check your API key and network connection.");
@@ -303,7 +315,11 @@ export const analyzeScript = async (script: string, scriptType: string, focus: s
                 },
             },
         });
-        return JSON.parse(response.text);
+        const text = response.text;
+        if (!text) {
+            throw new Error("Received an empty response from the API.");
+        }
+        return JSON.parse(text);
     } catch (error) {
         console.error("Error analyzing script:", error);
         throw new Error("Failed to analyze script. Please check your API key and network connection.");
@@ -367,7 +383,7 @@ export const generateTTScriptSuggestion = async (): Promise<string> => {
             model: 'gemini-2.5-flash',
             contents: "Generate a single, short, creative sentence (between 10 to 20 words) suitable for a text-to-speech demonstration. It should be interesting to hear. Examples: 'The velvet moon whispered secrets to the sleeping ocean.' or 'A symphony of chirping crickets filled the twilight air.' Do not include quotation marks in your response."
         });
-        return response.text.trim();
+        return response.text?.trim() ?? '';
     } catch (error) {
         console.error("Error generating TT script suggestion:", error);
         throw new Error("Failed to generate script suggestion.");
@@ -459,7 +475,11 @@ export const generateSoundEffect = async (
                 },
             },
         });
-        return JSON.parse(response.text);
+        const text = response.text;
+        if (!text) {
+            throw new Error("Received an empty response from the API.");
+        }
+        return JSON.parse(text);
     } catch (error) {
         console.error("Error generating sound effect:", error);
         throw new Error("Failed to generate sound effect. Please check your API key and network connection.");
